@@ -11,12 +11,11 @@ seven_ref = transpose(audioread('seven_ref.wav'));
 eight_ref = transpose(audioread('eight_ref.wav'));
 nine_ref = transpose(audioread('nine_ref.wav'));
 zero_ref = transpose(audioread('zero_ref.wav'));
-%put one back in
-len = [length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
-    length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref) length(zero_ref)];
-word_in = transpose(audioread('word_in.wav'));
+len = [length(zero_ref) length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
+    length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref)];
+%word_in = transpose(audioread('test_input.wav'));
+word_in  = [nine_ref one_ref one_ref];
 word_in_original = word_in;
-% word_in  = eight_ref;
 %Begin the guessing
 
 i = 1;
@@ -32,37 +31,27 @@ while (length(word_in)>min(len))
 [nine_corr, ninelags] = xcorr(word_in, nine_ref);
 [zero_corr, zerolags] = xcorr(word_in, zero_ref);
 
-match_loc = [find(one_corr == max(one_corr) & one_corr > 3) find(two_corr == max(two_corr) & two_corr > 3)...
-    find(three_corr == max(three_corr) & three_corr > 3) find(four_corr == max(four_corr) & four_corr >3)...
-    find(five_corr == max(five_corr) & five_corr > 3) find(six_corr == max(six_corr) & six_corr > 3)...
-    find(seven_corr == max(seven_corr) & seven_corr > 3) find(eight_corr == max(eight_corr) & eight_corr > 3)...
-    find(nine_corr == max(nine_corr) & nine_corr > 3) find(zero_corr == max(zero_corr) & zero_corr > 3)];
-%match_loc is the locations of the valid correlation spikes
-if(one_corr(min(match_loc)) > 3)
-    match = 1;
-elseif(two_corr(min(match_loc)) > 3)
-    match = 2;
-elseif(three_corr(min(match_loc)) > 3)
-    match = 3;
-elseif(four_corr(min(match_loc)) > 3)
-    match = 4;
-elseif(five_corr(min(match_loc)) > 3)
-    match = 5;
-elseif(six_corr(min(match_loc)) > 3)
-    match = 6;
-elseif(seven_corr(min(match_loc)) > 3)
-    match = 7;
-elseif(eight_corr(min(match_loc)) > 3)
-    match = 8;
-elseif(nine_corr(min(match_loc)) > 3)
-    match = 9;
-elseif(zero_corr(min(match_loc)) > 3)
-    match = 10;
-end
+spike_loc = [find(zero_corr == max(zero_corr)) find(one_corr == max(one_corr))...
+    find(two_corr == max(two_corr)) find(three_corr == max(three_corr))...
+    find(four_corr == max(four_corr)) find(five_corr == max(five_corr))...
+    find(six_corr == max(six_corr)) find(seven_corr == max(seven_corr))...
+    find(eight_corr == max(eight_corr)) find(nine_corr == max(nine_corr))];
+%match_loc is the locations of the **potentially** valid correlation spikes
+centerness = [abs(spike_loc(1) - len(1)), abs(spike_loc(2) - len(2)), abs(spike_loc(3) - len(3)),...
+            abs(spike_loc(4) - len(4)), abs(spike_loc(5) - len(5)), abs(spike_loc(6) - len(6)),...
+            abs(spike_loc(7) - len(7)), abs(spike_loc(8) - len(8)) abs(spike_loc(9) - len(9)),...
+            abs(spike_loc(10) - len(10))];
+%centerness is a vector containing a measure of how close to 'center' the
+%correlation for each reference is.  The closer to center their spike is,
+%the better the match.  Ideally, a perfect match will have a spike
+%perfectly in the center.
+
+match = find(centerness == min(centerness)) -1;
+
 output(i) = match; %store the guess
 i = i+1;
 
-word_in = word_in(len(match):length(word_in));
+word_in = word_in(len(match+1):length(word_in));
 
 if(length(0:length(word_in)) < min(len))
     break
@@ -72,22 +61,23 @@ disp(output);
 
 
 %Showing plots (debugging)
-[autocorr, autolags] = xcorr(word_in_original,word_in_original);
-subplot(3,2,1)
-plot(1:length(word_in_original),word_in_original)
-title('Input voice from user')
-subplot(3,2,5)
-plot(1:len(4),four_ref)
-title('Reference "Four" soundbyte')
-subplot(3,2,3)
-plot(1:len(9),nine_ref)
-title('Reference "Nine" soundbyte')
-subplot(3,2,4)
-plot(ninelags,nine_corr)
-title('Correlation of input against "Nine"')
-subplot(3,2,2)
-plot(autolags, autocorr)
-title('Correlation of input with itself')
-subplot(3,2,6)
-plot(fourlags,four_corr)
-title('Correlation of input against "Four"')
+% [autocorr, autolags] = xcorr(word_in_original,word_in_original);
+% subplot(3,2,1)
+% plot(1:length(word_in_original),word_in_original)
+% title('Input voice from user')
+% subplot(3,2,5)
+% plot(1:len(4),four_ref)
+% title('Reference "Four" soundbyte')
+% subplot(3,2,3)
+% plot(1:len(9),nine_ref)
+% title('Reference "Nine" soundbyte')
+% subplot(3,2,4)
+% plot(ninelags,nine_corr)
+% title('Correlation of input against "Nine"')
+% subplot(3,2,2)
+% plot(autolags, autocorr)
+% title('Correlation of input with itself')
+% subplot(3,2,6)
+% plot(fourlags,four_corr)
+% title('Correlation of input against "Four"')
+plot(ninelags, nine_corr)
