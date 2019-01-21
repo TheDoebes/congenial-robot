@@ -14,8 +14,8 @@ zero_ref = transpose(audioread('zero_ref.wav'));
 len = [length(zero_ref) length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
     length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref)];
 %word_in = transpose(audioread('test_input.wav'));
-%word_in  = [zero_ref one_ref two_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
-word_in = [nine_ref one_ref one_ref];
+word_in  = [zero_ref one_ref two_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
+%word_in = [nine_ref one_ref one_ref];
 word_in_original = word_in;
 %Begin the guessing
 
