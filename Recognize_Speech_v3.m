@@ -1,21 +1,25 @@
 %Speech Recognition
 output = [0]; %This is where the system will record what it is guessing
+
 %Store wavs
-one_ref = transpose(audioread('one_ref.wav'));
-two_ref = transpose(audioread('two_ref.wav'));
-three_ref = transpose(audioread('three_ref.wav'));
-four_ref = transpose(audioread('four_ref.wav'));
-five_ref = transpose(audioread('five_ref.wav'));
-six_ref = transpose(audioread('six_ref.wav'));
-seven_ref = transpose(audioread('seven_ref.wav'));
-eight_ref = transpose(audioread('eight_ref.wav'));
-nine_ref = transpose(audioread('nine_ref.wav'));
-zero_ref = transpose(audioread('zero_ref.wav'));
+zero_ref = transpose(audioread('zero_ref.wav'))/avg(zero_ref);
+one_ref = transpose(audioread('one_ref.wav'))/avg(one_ref);
+two_ref = transpose(audioread('two_ref.wav'))/avg(two_ref);
+three_ref = transpose(audioread('three_ref.wav'))/avg(three_ref);
+four_ref = transpose(audioread('four_ref.wav'))/avg(four_ref);
+five_ref = transpose(audioread('five_ref.wav'))/avg(five_ref);
+six_ref = transpose(audioread('six_ref.wav'))/avg(six_ref);
+seven_ref = transpose(audioread('seven_ref.wav'))/avg(seven_ref);
+eight_ref = transpose(audioread('eight_ref.wav'))/avg(eight_ref);
+nine_ref = transpose(audioread('nine_ref.wav'))/avg(nine_ref);
+
 len = [length(zero_ref) length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
     length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref)];
 %word_in = transpose(audioread('test_input.wav'));
 word_in  = [zero_ref one_ref two_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
-%word_in = [nine_ref one_ref one_ref];
+% word_in = [eight_ref four_ref one_ref one_ref];
+
+word_in = word_in/avg(word_in);
 word_in_original = word_in;
 %Begin the guessing
 
