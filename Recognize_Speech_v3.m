@@ -14,7 +14,8 @@ zero_ref = transpose(audioread('zero_ref.wav'));
 len = [length(zero_ref) length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
     length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref)];
 %word_in = transpose(audioread('test_input.wav'));
-word_in  = [zero_ref one_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
+%word_in  = [zero_ref one_ref two_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
+word_in = [nine_ref one_ref one_ref];
 word_in_original = word_in;
 %Begin the guessing
 
@@ -55,17 +56,23 @@ while (length(word_in)>min(len))
         find(four_corr == max(four_corr)) find(five_corr == max(five_corr))...
         find(six_corr == max(six_corr)) find(seven_corr == max(seven_corr))...
         find(eight_corr == max(eight_corr)) find(nine_corr == max(nine_corr))];
-%match_loc is the locations of the **potentially** valid correlation spikes
+    %spike_loc is the locations of the **potentially** valid correlation spikes
+    
     centerness = [abs(spike_loc(1) - len(1)), abs(spike_loc(2) - len(2)), abs(spike_loc(3) - len(3)),...
                 abs(spike_loc(4) - len(4)), abs(spike_loc(5) - len(5)), abs(spike_loc(6) - len(6)),...
                 abs(spike_loc(7) - len(7)), abs(spike_loc(8) - len(8)) abs(spike_loc(9) - len(9)),...
                 abs(spike_loc(10) - len(10))];
-%centerness is a vector containing a measure of how close to 'center' the
-%correlation for each reference is.  The closer to center their spike is,
-%the better the match.  Ideally, a perfect match will have a spike
-%perfectly in the center.
+    centerness = centerness ./ len; %normalize centerness into percents
+    %centerness is a vector containing a measure of how close to 'center' the
+    %correlation for each reference is.  The closer to center their spike is,
+    %the better the match.  Ideally, a perfect match will have a spike
+    %perfectly in the center.
 
-    match = find(centerness == min(centerness)) -1;
+
+    matchness = spikes ./ centerness;
+
+    match = find(matchness == max(matchness)) -1;
+    
 
     output(i) = match; %store the guess
     i = i+1;
@@ -77,7 +84,7 @@ end
 disp(output);
 
 
-%Showing plots (debugging)
+% Showing plots (debugging)
 % [autocorr, autolags] = xcorr(word_in_original,word_in_original);
 % subplot(3,2,1)
 % plot(1:length(word_in_original),word_in_original)
