@@ -15,9 +15,10 @@ nine_ref = transpose(audioread('nine_ref.wav'))/avg(nine_ref);
 
 len = [length(zero_ref) length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
     length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref)];
-%word_in = transpose(audioread('test_input.wav'));
-word_in  = [zero_ref one_ref two_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
+word_in = transpose(audioread('test_input.wav'));
+% word_in  = [zero_ref one_ref two_ref three_ref four_ref five_ref six_ref seven_ref eight_ref nine_ref];
 % word_in = [eight_ref four_ref one_ref one_ref];
+
 
 word_in = word_in/avg(word_in);
 word_in_original = word_in;
