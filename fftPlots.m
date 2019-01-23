@@ -18,7 +18,14 @@ hold on
 % fftp(three_ref);
 % fftp(four_ref);
 % fftp(five_ref);
-
-%fftp(zero_ref + one_ref);
+sum_ref = zero_ref(end-14000:end) + one_ref(end-14000:end) + ...
+    two_ref(end-14000:end) + three_ref(end-14000:end) + ...
+    four_ref(end-14000:end) + five_ref(end-14000:end) + ...
+    six_ref(end-14000:end) + seven_ref(end-14000:end) + ...
+    eight_ref(end-14000:end) + nine_ref(end-14000:end);
+% fftp(sum_ref);
+% fftp(zero_ref(end-14000:end) - sum_ref);
+% plot(xcorr(ftn(zero_ref(end-14000:end) - sum_ref), ftn(zero_ref)));
+plot(xcorr((zero_ref(end-14000:end) - sum_ref), zero_ref));
 
 % legend('0','1','2','3','4','5');
