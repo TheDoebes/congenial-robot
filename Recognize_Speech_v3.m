@@ -2,16 +2,16 @@
 output = [0]; %This is where the system will record what it is guessing
 
 %Store wavs
-zero_ref = transpose(audioread('zero_ref.wav'))/avg(zero_ref);
-one_ref = transpose(audioread('one_ref.wav'))/avg(one_ref);
-two_ref = transpose(audioread('two_ref.wav'))/avg(two_ref);
-three_ref = transpose(audioread('three_ref.wav'))/avg(three_ref);
-four_ref = transpose(audioread('four_ref.wav'))/avg(four_ref);
-five_ref = transpose(audioread('five_ref.wav'))/avg(five_ref);
-six_ref = transpose(audioread('six_ref.wav'))/avg(six_ref);
-seven_ref = transpose(audioread('seven_ref.wav'))/avg(seven_ref);
-eight_ref = transpose(audioread('eight_ref.wav'))/avg(eight_ref);
-nine_ref = transpose(audioread('nine_ref.wav'))/avg(nine_ref);
+zero_ref = anorm('zero_ref.wav');
+one_ref = anorm('one_ref.wav');
+two_ref = anorm('two_ref.wav');
+three_ref = anorm('three_ref.wav');
+four_ref = anorm('four_ref.wav');
+five_ref = anorm('five_ref.wav');
+six_ref = anorm('six_ref.wav');
+seven_ref = anorm('seven_ref.wav');
+eight_ref = anorm('eight_ref.wav');
+nine_ref = anorm('nine_ref.wav');
 
 len = [length(zero_ref) length(one_ref) length(two_ref) length(three_ref) length(four_ref) length(five_ref)...
     length(six_ref) length(seven_ref) length(eight_ref) length(nine_ref)];
