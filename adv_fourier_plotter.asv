@@ -1,0 +1,62 @@
+figure
+title('Comparing reference sounds to zero_in in the frequency domains');
+subplot(2,5,1)
+plot(one_f)))
+hold on
+plot(zero_rf)))
+axis([0,1200,0,100])
+title('Vs zero ref')
+subplot(2,5,2)
+plot(one_f)))
+hold on
+plot(one_rf)))
+axis([0,1200,0,100])
+title('Vs one ref')
+subplot(2,5,3)
+plot(one_f)))
+hold on
+plot(two_rf)))
+axis([0,1200,0,100])
+title('Vs two ref')
+subplot(2,5,4)
+plot(one_f)))
+hold on
+plot(three_rf)))
+axis([0,1200,0,100])
+title('Vs three ref')
+subplot(2,5,5)
+plot(one_f)))
+hold on
+plot(four_rf)))
+axis([0,1200,0,100])
+title('Vs four ref')
+subplot(2,5,6)
+plot(one_f)))
+hold on
+plot(five_rf)))
+axis([0,1200,0,100])
+title('Vs five ref')
+subplot(2,5,7)
+plot(one_f)))
+hold on
+plot(six_rf)))
+axis([0,1200,0,100])
+title('Vs six ref')
+subplot(2,5,8)
+plot(one_f)))
+hold on
+plot(seven_rf)))
+axis([0,1200,0,100])
+title('Vs seven ref')
+subplot(2,5,9)
+plot(one_f)))
+hold on
+plot(eight_rf)))
+axis([0,1200,0,100])
+title('Vs eight ref')
+subplot(2,5,10)
+plot(one_f)))
+hold on
+plot(nine_rf)))
+axis([0,1200,0,100])
+title('Vs nine ref')
