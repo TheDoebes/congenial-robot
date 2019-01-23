@@ -26,6 +26,5 @@ sum_ref = zero_ref(end-14000:end) + one_ref(end-14000:end) + ...
 % fftp(sum_ref);
 % fftp(zero_ref(end-14000:end) - sum_ref);
 % plot(xcorr(ftn(zero_ref(end-14000:end) - sum_ref), ftn(zero_ref)));
-plot(xcorr((zero_ref(end-14000:end) - sum_ref), zero_ref));
 
 % legend('0','1','2','3','4','5');
