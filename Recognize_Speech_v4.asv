@@ -1,0 +1,52 @@
+in = [zeros(1,16000) audioread('input.wav')'];
+in = in(end-30000:end);
+%ZERO 
+% @ index 131, values range from 6.56 to 10.6
+% @ index 210, values range from 7.28 to 11.32
+% @ index 407, values range from 9.34 to 14.23
+zero_score = abs(in(131)-8.58) + abs(in(210)-9.3) + abs(in(407)-11.79);
+%ONE
+% @ index 138, values range from 13.88 to 16.5
+% @ index 193, values range from 2.94 to 5.61
+% @ index 390, values range from 4.39 to 7.54
+one_score  = abs(in(138)-15.19) + abs(in(193)-4.28) + abs(in(390)-5.97);
+%TWO
+% @ index 126, values range from 2.85 to 3.88
+% @ index 127, values range from 2.99 to 3.70
+% @ index 337, values range from 1.46 to 1.89
+two_score = (abs(in(126)-3.36))^2 + (abs(in(127)-3.35))^2 + (abs(in(337)-1.68))^2;
+%THREE
+% @ index 126, values range from 1.75 to 3.69 
+% @ index 127, values range from 2.09 to 3.17
+% @ index 128, values range from 2.21 to 4.89
+three_score = abs(in(126)-2.72) + abs(in(127)-2.63) + abs(in(128)-3.55);
+%FOUR
+% @ index 421, values range from 5.25 to 9.47
+% @ index 143, values range from 7.28 to 10.19
+% @ index 145, values range from 4.38 to 8.86
+four_score = abs(in(421)-7.36) + abs(in(143)-8.74) + abs(in(145)-6.62);
+%FIVE
+% @ index 122, values range from 2.212 to 4.00
+% @ index 330, values range from 2.24 to 4.37
+% @ index 657, values range from 1.75 to 3.72
+five_score = abs(in(122)-3.11) + abs(in(330)-3.31) + abs(in(657)-2.76);
+%SIX
+% @ index 132, values range from 5.50 to 9.25
+% @ index 133, values range from 5.51 to 8.76
+% @ index 46, values range from 1.57 to 2.65
+six_score = abs(in(132)-7.38) + abs(in(133)-7.16) + abs(in(46)-2.11);
+%SEVEN
+% @ index 120, values range from 1.25 to 3.10
+% @ index 123, values range from 2.67 to 5.02
+% @ index 541, values range from 1.81 to 3.48
+seven_score = abs(in(120)-2.18) + abs(in(123)-3.85) + abs(in(541)-2.65);
+%EIGHT
+% @ index 319, values range from 7.18 to 8.30
+% @ index 129, values range from 1.94 to 5.15
+% @ index 132, values range from 3.39 to 6.45
+eight_score = abs(in(319)-7.75) + abs(in(129)-3.55) + abs(in(132)-);
+%NINE
+% @ index 328, values range from 2.67 to 3.90
+% @ index 324, values range from 2.98 to 5.63
+% @ index 469, values range from 3.16 to 4.52
+
