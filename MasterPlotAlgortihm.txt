@@ -1,0 +1,9 @@
+First: check for six. If the input is six, it will have a heavy presence in the 2000 to 2800 range.  Once we know if it is six or not, we can ignore six in the plot.
+Next: Check eight. Greatest values from 1165 to 1265. (~1 to 2.8) Take area on this range.
+Next: Check two:  Two is now the only significant presence in the range 1350 to 1600
+Next: Check nine:  High area in the range 620 to 690 AND will be very low (<.1) from 3000 to 3500
+Next: Check three:  Add together the area across ranges 734 to 874 and 1206 to 1367.  Three will be highest
+Next: Check five: In the range 500 to 580, five should be the highest.
+Next: Check seven:  Seven is significantly greater than the remaining options in the range 582 to 1153.
+Next: Check one:  Add together the area across ranges 368 to 500 and 1421 to 1774.
+If input fails all of the above checks, it is four.
